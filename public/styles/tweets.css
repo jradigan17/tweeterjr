@@ -1,0 +1,53 @@
+article {
+  display: flex;
+  width: 100%;
+  flex-direction: column; 
+  border: solid;
+  border-color: var(--black);
+  border-width: 3px; 
+  padding: 0.5em;
+  background-color: var(--green);
+  color: var(--black);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.5em;
+  font-family: 'Bungee', cursive;
+  font-weight: 400;
+  font-size: 18px;
+  align-items: flex-end;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: small;
+  flex-direction: row;
+  padding-top: 0.5em;
+  border-top: 3px;
+  border-style: solid none none none;
+}
+
+.icon {
+  display: flex;
+  padding-left: 1em;
+}
+
+.content {
+  display: flex;
+  padding-left: 1em;
+  font-size: 18px;
+  padding-bottom: 0.5em;
+}
+
+.tweeticon {
+  font-size: 30px;
+}
+
+.userhandler {
+  color: var(--grey);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+}

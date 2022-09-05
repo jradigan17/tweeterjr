@@ -1,0 +1,24 @@
+.userinfo {
+  display: flex;
+  height: auto;
+  width: 100%;
+  padding-top: 120px;
+  background-color: var(--purple);
+  flex-direction: column;
+  align-items: center;
+  border-style: solid;
+  border-color: var(--black);
+  background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
+  position: static;
+}
+
+.name {
+  flex-direction: row;
+  color: var(--black);
+  font-family: 'Bungee', cursive;
+  font-weight: 400;
+}
+
+.husky {
+  flex-direction: row;
+}

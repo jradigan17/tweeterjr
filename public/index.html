@@ -7,23 +7,89 @@
     <!-- External CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" />
 
+    <!-- Google Fonts: Source Sans Pro - Light 300 Italic / Light 300 / Semibold 600 / Semibold 600 Italic && Bungee - Regular 400-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
+    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/10efa60a15.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
     <!-- Top nav bar (fixed) -->
     <nav>
-      <span>tweeter</span>
+      <span class="tweeter"><img src="/images/hummingbird.png" alt="Test Image" height="70"/>tweeter</span>
+
+      <span class="new-tweeter"><strong id="write">Write&nbsp;</strong> a new tweet<br><i style="color: #5d43a4;" class="fa-solid fa-angles-down"></i></br></span>
     </nav>
 
+    <header class="userinfo">
+      <div class="husky">
+          <img src="/images/profile-hex-husky.png"> 
+      </div>
+      <div class="name">
+        <h2>Guinness</h2>
+      </div>
+    </header>
+
     <!-- Page-specific (main) content here -->
-    <main class="container"></main>
+    <main class="container">
+      <br>
+      <section class="new-tweet">
+        <form class="tweet-form" name="new-tweet" action="/tweets" method="POST">
+          <label for="tweet-text">What are you humming about?</label>
+          <textarea name="text" id="tweet-text"></textarea>
+          <div class="bottom-section">
+            <button type="submit">Tweet</button>
+            <output name="counter" class="counter" for="tweet-text">140</output>
+          </div>
+        </form>
+      </section>
+      <br>
+      <article>
+        <header>
+          <span><i class="fa-solid fa-user-astronaut tweeticon"></i>  Chris Hadfield</span>
+          <span class="userhandler">@CHadfield</span>
+        </header>
+        <span class="content">
+          Who or what was in space first - Marc Garneau, Roberta Bondar or the Canadarm?
+        </span>
+        <footer>
+          <span>2 days ago</span>
+          <span><i class="fa-solid fa-flag icon"></i><i class="fa-solid fa-retweet icon"></i><i class="fa-solid fa-heart icon"></i></span>
+        </footer>
+      </article>
+      <br>
+      <article>
+        <header>
+          <span><i class="fa-brands fa-canadian-maple-leaf tweeticon"></i>  Canada</span>
+          <span class="userhandler">@Canada</span>
+        </header>
+        <span class="content">
+          By which Ontario town is Neys Park
+        </span>
+        <footer>
+          <span>10 days ago</span>
+          <span><i class="fa-solid fa-flag icon"></i><i class="fa-solid fa-retweet icon"></i><i class="fa-solid fa-heart icon"></i></span>
+        </footer>
+      </article>
+      <br>
+    </main>
   </body>
 </html>

@@ -3,8 +3,21 @@
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
  */
+
+:root {
+  --green: #1bdf76;
+  --purple: #7b51ec;
+  --white: #f4f1ec;
+  --black: #000000;
+  --grey: #3e3d3a;
+  --azure: azure;
+  --red: #ff0000;
+  --lightpurple: #6950ae;
+  --lightgreen: rgb(93, 248, 165);
+}
 html {
   box-sizing: border-box;
+
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -15,11 +28,31 @@ html {
  */
 
 body {
-  color: #545149;
-  background-color: #f4f1ec;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--white);
+  background-color: var(--black);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
   font-size: 24px;
+  align-items: center;
+  background-image: url("https://www.transparenttextures.com/patterns/cardboard.png");
 }
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+main {
+  display: flex;
+  width: 90%;
+  color: var(--white);
+  background-color: var(--black);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("https://www.transparenttextures.com/patterns/cardboard.png");
+}

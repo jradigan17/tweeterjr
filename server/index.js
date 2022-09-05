@@ -1,3 +1,12 @@
+// data validation - tweet too long
+// data validation - no tweet
+// server not running
+// light & dark mode
+// api
+// random tweets
+// interactive lights/emojis
+// tool tips
+
 "use strict";
 
 // Basic express setup:
