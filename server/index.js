@@ -6,6 +6,10 @@
 // random tweets
 // interactive lights/emojis
 // tool tips
+// start with 'npm run local'
+// avatar randomizer
+// add notes/comments
+// https://codepen.io/nelledejones/pen/gOOPWrK
 
 "use strict";
 

@@ -1,6 +1,6 @@
 $(document).ready(function() {
   // --- our code goes here ---
-  console.log("document ready");
+  console.log("document ready - take two");
 
   $("#tweet-text").on('input', function() {
     console.log(this.value.length);
@@ -9,6 +9,9 @@ $(document).ready(function() {
       $(this).siblings('div').children('.counter').css("color", "var(--red)");
     } else {
       $(this).siblings('div').children('.counter').css("color", "var(--green)");
+    }
+    if(this.value.length >= 0 && this.value.length < 140) {
+      $('.invalid').hide();
     }
   });
 

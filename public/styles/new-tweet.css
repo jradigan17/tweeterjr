@@ -6,13 +6,24 @@ button {
   font-size: 20px;
 }
 
+button:hover {
+  background-color: var(--purple);
+  background-image: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
 section {
   display: flex;
   width: 100%;
   flex-direction: row;
   font-family: 'Bungee', cursive;
   font-weight: 400;
-  color: var(--green)
+  color: var(--green);
+  padding-bottom: 1em;
 }
 
 #tweet-text {
@@ -43,4 +54,45 @@ section {
 
 .tweet-form {
   width: 100%;
+}
+
+.invalid {
+  display: flex;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--red);
+  visibility: hidden;
+}
+
+.left-side {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.shake {
+  background-color: var(--purple);
+  background-image: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }

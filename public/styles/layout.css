@@ -10,15 +10,18 @@
   --white: #f4f1ec;
   --black: #000000;
   --grey: #3e3d3a;
+  --lightgrey: #717171;
   --azure: azure;
   --red: #ff0000;
   --lightpurple: #6950ae;
   --lightgreen: rgb(93, 248, 165);
+  --lightred: #f8a8a8;
 }
+
 html {
   box-sizing: border-box;
-
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -55,4 +58,32 @@ main {
   flex-direction: column;
   align-items: center;
   background-image: url("https://www.transparenttextures.com/patterns/cardboard.png");
+}
+
+.back-top {
+  display: flex;
+  align-self: flex-end;
+  justify-self: flex-end;
+  padding-bottom: 1em;
+  padding-right: 1em;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  color: var(--green)
+}
+
+.back-top:hover {
+  color: var(--purple);
+  animation: gelatine 0.5s infinite;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+@keyframes gelatine {
+  from, to { transform: scale(1, 1); }
+  25% { transform: scale(0.9, 1.1); }
+  50% { transform: scale(1.1, 0.9); }
+  75% { transform: scale(0.95, 1.05); }
 }

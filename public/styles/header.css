@@ -2,7 +2,7 @@
   display: flex;
   height: auto;
   width: 100%;
-  padding-top: 120px;
+  padding-top: 100px;
   background-color: var(--purple);
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@
 
 .name {
   flex-direction: row;
-  color: var(--black);
+  color: var(--grey);
   font-family: 'Bungee', cursive;
   font-weight: 400;
 }
