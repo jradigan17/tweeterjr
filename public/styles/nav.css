@@ -49,3 +49,9 @@ nav {
     39% { transform:translateY(-3%); }
     40% { transform:translateY(0); }
 }
+
+@media only screen and (min-width:1024px) {
+  nav {
+    border-style: solid;
+  }
+}

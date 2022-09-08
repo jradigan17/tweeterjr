@@ -10,6 +10,7 @@
 // avatar randomizer
 // add notes/comments
 // https://codepen.io/nelledejones/pen/gOOPWrK
+// known bug - resize - reload
 
 "use strict";
 

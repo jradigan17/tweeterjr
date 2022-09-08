@@ -14,10 +14,11 @@ article {
   padding: 0.5em;
   background-color: var(--green);
   color: var(--black);
+  border-radius: 20px;
 }
 
 article:hover {
-  box-shadow: 6px 6px 3px var(--lightpurple);
+  filter: drop-shadow(0px 0px 20px var(--lightpurple));
 }
 
 header {

@@ -22,3 +22,14 @@
 .husky {
   flex-direction: row;
 }
+
+@media only screen and (min-width:1024px) {
+  .userinfo {
+    width: 33.3%;
+    padding-top: 20px;
+    margin-left: 30px;
+    margin-top: 1.5em;
+    border-radius: 40px;
+  }
+
+}

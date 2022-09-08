@@ -69,13 +69,13 @@ const createTweetElement = (object) => {
   </footer>
   </article>
   <br>`);
-}
+};
 
 const renderTweets = (tweets) => {
   tweets.forEach(element => {
     $('.tweets-list').prepend(createTweetElement(element));
   });
-}
+};
 
 const tooshort = `Whoops - No Tweet Entered`;
 
@@ -88,9 +88,9 @@ const datavalidation = (phrase) => {
   $('.invalid').text(phrase);
   $('.invalid').slideDown("fast");
   // $('.left-side').append(toolong);
-}
+};
 
-const escapetext = function (str) {
+const escapetext = function(str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
@@ -98,9 +98,9 @@ const escapetext = function (str) {
 
 const loadtweets = () => {
   $.get('/tweets', function(data, status) {
-    renderTweets(data)
-  })
-}
+    renderTweets(data);
+  });
+};
 
 $(document).ready(function() {
 
@@ -118,7 +118,7 @@ $(document).ready(function() {
     console.log($('#tweet-text').serialize());
     // $('.invalid').remove();
     $('.invalid').hide();
-    if ($('.counter').val() < 0){
+    if ($('.counter').val() < 0) {
       datavalidation(toolong);
       return;
     } else if ($('.counter').val() === "140") {
@@ -129,12 +129,12 @@ $(document).ready(function() {
         $('#tweet-text').val("");
         $('.counter').val(140);
         loadtweets();
-      })
+      });
     }
-  })
+  });
 
 
-  loadtweets()
+  loadtweets();
 
   // $("article").on('mouseover', function() {
   //   $(this).css("box-shadow", "6px 6px 3px var(--lightpurple)");
@@ -178,6 +178,6 @@ $(document).ready(function() {
 
   $('.back-top').on('click', function() {
     $("html, body").stop().animate({ scrollTop: 0}, "slow");
-  })
+  });
 
 });

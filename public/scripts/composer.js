@@ -6,6 +6,10 @@ $(document).ready(function() {
   // const position = element.getBoundingClientRect()
   const height = $('main').offset().top - 100;
 
+  $(window).on('resize', function() {
+    location.reload();
+  });
+
   $(window).on("scroll", function() {
     if ($(window).scrollTop() > $('main').offset().top) {
       $('.new-tweet').hide();
@@ -15,6 +19,12 @@ $(document).ready(function() {
     }
     if ($(window).scrollTop() < $('article').first().offset().top) {
       $('.back-top').hide();
+    }
+
+    if ($(window).scrollTop() > $('main').offset().top - 100) {
+      $('nav').css('border-style',"solid");
+    } else {
+      $('nav').css('border-style',"solid solid none solid");
     }
   });
 
