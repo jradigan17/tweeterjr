@@ -21,7 +21,7 @@ const createTweetElement = (object) => {
     for (let i = 0; i < flagstatus.length; i++) {
       if (Object.keys(flagstatus[i])[0] === object.user.handle) {
         flagged = 'redflag';
-        blurred = 'blurtext'
+        blurred = 'blurtext';
       }
     }
   }
@@ -88,7 +88,7 @@ const escapetext = function(str) {
 const renderTweets = (tweets) => {
   if (tweets.length > 10) {
     $('.more-tweets').show();
-    $('.badge').text  (tweets.length-10);
+    $('.more-tweets').attr('data-badge', tweets.length-10);
     localStorage.setItem('show','10');
     // console.log(localStorage.getItem('show'))
     let firsttweets = [];
@@ -128,7 +128,7 @@ const loadMoreTweets = () => {
       if (favtweets.length > 0) {
         if (favtweets.length > itemcount + 10) {
           $('.more-tweets').show();
-          $('.badge').text  (favtweets.length - count);
+          $('.more-tweets').attr('data-badge', favtweets.length - count);
           localStorage.setItem('show', count);
           let firsttweets = [];
           for (let i = favtweets.length - count; i < favtweets.length; i++) {
@@ -152,7 +152,7 @@ const loadMoreTweets = () => {
       $('.tweets-list').empty();
       if (data.length > itemcount + 10) {
         $('.more-tweets').show();
-        $('.badge').text  (data.length - count);
+        $('.more-tweets').attr('data-badge', data.length - count);
         localStorage.setItem('show', count);
         let firsttweets = [];
         for (let i = data.length - count; i < data.length; i++) {
@@ -253,6 +253,7 @@ $(document).ready(function() {
   $('.back-top').hide();
   $('.more-tweets').hide();
   localStorage.removeItem('show')
+  $('.fa-gratipay').attr('data-badge', JSON.parse(localStorage.getItem('heartstatus')).length);
   // console.log(localStorage.getItem('show'))
 //----------------------------------------------------------
 
@@ -409,6 +410,7 @@ if (localStorage.getItem('fav') === 'true') {
       $(this).parent().find('.fa-heart').removeClass('redflag');
       let value = removeStatus(heartstatus, userheart);
       localStorage.setItem('heartstatus', JSON.stringify(value))
+      $('.fa-gratipay').attr('data-badge', value.length);
       // console.log(localStorage);
       event.stopPropagation();
       if (!heartstatus) {
@@ -432,6 +434,7 @@ if (localStorage.getItem('fav') === 'true') {
       heartstatus.push(userheart);
       }
       localStorage.setItem("heartstatus", JSON.stringify(heartstatus));
+      $('.fa-gratipay').attr('data-badge', heartstatus.length);
       // console.log(localStorage.getItem('heartstatus'));
       return;
     }

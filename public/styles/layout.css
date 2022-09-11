@@ -138,10 +138,34 @@ a {
   align-self: center;
 }
 
+
 .badge {
-  color: var(--red);
+  position: relative;
+}
+
+.badge[data-badge]:after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  content: attr(data-badge);
+  position: absolute;
+  top: -5px;
+  right: -25px;
+  background: var(--purple);
+  color: var(--black);
+  background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
+  width: 32px;
+  height: 24px;
   text-align: center;
-  align-self: center;
+  line-height: 18px;
+  border-radius: 20%;
+  border-style: solid;
+  border-color: black;
+  box-shadow: 0 0 1px #333;
+  font-size: 15px;
+  font-family: 'Bungee';
+  font-weight: 600;
 }
 
 @keyframes gelatine {
@@ -186,3 +210,5 @@ a {
     font-size: 1em;
   }
 }
+
+
