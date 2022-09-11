@@ -1,17 +1,23 @@
-// data validation - tweet too long
-// data validation - no tweet
-// server not running
-// light & dark mode
+//----------------------------------------------------------
+// TO DO
 // api
-// random tweets
-// interactive lights/emojis
-// tool tips
-// start with 'npm run local'
-// avatar randomizer
-// add notes/comments
-// https://codepen.io/nelledejones/pen/gOOPWrK
-// known bug - resize - reload
+// SASS
+// read me file
+//----------------------------------------------------------
 
+//----------------------------------------------------------
+// https://codepen.io/nelledejones/pen/gOOPWrK
+//----------------------------------------------------------
+
+//----------------------------------------------------------
+// Known Bug
+// - resize -> needs reload & eliminates all flags & hearts & darkmode
+// - refresh -> eliminates all hearts & flags & darkmode
+// start with 'npm run local'
+//----------------------------------------------------------
+
+//----------------------------------------------------------
+// Required aspects/files - Provided Code
 "use strict";
 
 // Basic express setup:
@@ -49,3 +55,4 @@ app.use("/tweets", tweetsRoutes);
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+//----------------------------------------------------------

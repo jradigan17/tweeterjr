@@ -7,20 +7,15 @@
   flex-direction: column;
   align-items: center;
   border-style: solid;
-  color: var(--grey);
   border-color: var(--black);
   background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
   position: static;
 }
 
-#darkheader {
-  background-color: var(--darkgrey);
-  color: var(--black);
-}
-
 .name {
   display: flex;
   flex-direction: column;
+  color: var(--grey);
   font-family: 'Bungee', cursive;
   font-weight: 400;
   align-items: center;
@@ -37,10 +32,6 @@
 
 .heart {
   color: var(--lightgreen)
-}
-
-.favs {
-  color: var(--red);
 }
 
 @media only screen and (min-width:1024px) {

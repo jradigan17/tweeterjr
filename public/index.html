@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
     <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tooltips.css" type="text/css" />
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -47,11 +48,12 @@
           <img src="/images/profile-hex-husky.png"> 
       </div>
       <div class="name">
-        <h2>Guinness</h2>
+      <span>Guinness <i class="fa-brands fa-gratipay tooltip"><span class="tooltiptext">Favourite Tweets</span></i></span>
       </div>
     </header>
 
     <!-- Page-specific (main) content here -->
+    <span class="darkspan"><i class="fa-regular fa-moon darkmode tooltipleft"><span class="tooltiptext">Switch Light/Dark Mode</span></i></span>
     <main class="container">
       <br>
       <section class="new-tweet">
@@ -64,13 +66,24 @@
               <br>
               <span class="invalid"></span>
             </div>
-            <output name="counter" class="counter" for="tweet-text">140</output>
+            <div class="right-side">
+              <i class="fa-solid fa-ghost tooltip"><span class="tooltiptext">Generate Random Tweet</span></i>
+              <output name="counter" class="counter" for="tweet-text">140</output>
+            </div>
           </div>
         </form>
       </section>
       <div class="tweets-list"></div>
+      <button class="more-tweets">Load More Tweets  (<span class="badge"></span>)</button>
+      
+      <br>
+      <footer class="page-footer">
+        <div>
+          <p>&copy; Copyright 2022 | All Rights Reserved | <a href="https://github.com/jradigan17/tweeterjr" title="https://github.com/jradigan17/tweeterjr">Get the latest version on <i class="fa-brands fa-github"></i></a></p>
+        </div>
+      </footer>
     </main>
     </div>
-    <i class="fa-solid fa-circle-chevron-up back-top"></i>
+    <i class="fa-solid fa-circle-chevron-up back-top tooltipbot"><span class="tooltiptext">Back to Top</span></i>
   </body>
 </html>

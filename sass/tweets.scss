@@ -21,12 +21,6 @@ article:hover {
   filter: drop-shadow(0px 0px 20px var(--lightpurple));
 }
 
-.darkarticle {
-  border-color: var(--green);
-  background-color: var(--black);
-  color: var(--beige);
-}
-
 header {
   display: flex;
   justify-content: space-between;
@@ -76,10 +70,6 @@ footer {
 .tweeticon {
   font-size: 30px;
   color: var(--black)
-}
-
-#darkicon {
-  color: var(--grey)
 }
 
 .userhandler {
