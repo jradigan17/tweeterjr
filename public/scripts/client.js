@@ -253,13 +253,21 @@ $(document).ready(function() {
   $('.back-top').hide();
   $('.more-tweets').hide();
   localStorage.removeItem('show')
-  $('.fa-gratipay').attr('data-badge', JSON.parse(localStorage.getItem('heartstatus')).length);
   // console.log(localStorage.getItem('show'))
 //----------------------------------------------------------
 
 //----------------------------------------------------------
 // Render & Render Tweets - DNU as Data Base Removed
   // renderTweets(data);
+//----------------------------------------------------------
+
+//----------------------------------------------------------
+// Render Liked Tweets
+  if (!JSON.parse(localStorage.getItem('heartstatus'))) {
+    $('.fa-gratipay').attr('data-badge', 0);
+  } else {
+    $('.fa-gratipay').attr('data-badge', JSON.parse(localStorage.getItem('heartstatus')).length);
+  };
 //----------------------------------------------------------
 
 //----------------------------------------------------------

@@ -30,6 +30,10 @@ $(document).ready(function() {
     $('#tweet-text').css('background-image', 'none')
     $('.darkmode').addClass('fa-sun');
     $('.darkmode').removeClass('fa-moon');
+    $('.fa-gratipay').removeClass('badge');
+    $('.fa-gratipay').addClass('badgedark');
+    $('.more-tweets').removeClass('badge');
+    $('.more-tweets').addClass('badgedark');
   }
 //----------------------------------------------------------
 
@@ -106,6 +110,10 @@ $(document).ready(function() {
       $(this).addClass('fa-sun');
       $(this).removeClass('fa-moon');
       localStorage.setItem('darkmode', true);
+      $('.fa-gratipay').removeClass('badge');
+      $('.fa-gratipay').addClass('badgedark');
+      $('.more-tweets').removeClass('badge');
+      $('.more-tweets').addClass('badgedark');
       // console.log("moon clicked:", localStorage.getItem('darkmode'));
       return;
     } else {
@@ -120,6 +128,10 @@ $(document).ready(function() {
       $(this).removeClass('fa-sun');
       $(this).addClass('fa-moon');
       localStorage.setItem('darkmode', false);
+      $('.fa-gratipay').removeClass('badgedark');
+      $('.fa-gratipay').addClass('badge');
+      $('.more-tweets').removeClass('badgedark');
+      $('.more-tweets').addClass('badge');
       // console.log("sun clicked:", localStorage.getItem('darkmode'));
       return;
     }
