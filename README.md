@@ -71,15 +71,54 @@ Random Tweet
 ## Detailed Operation
 1) [Create](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) a new repository in GitHub. 
 2) Clone your repository to your local device.
-3) Install dependencies with  
+3) Install dependencies with    
   `npm install`   
 4) Start the Tweeter Server in your terminal with `nodemon`  
   `npm run local`
 5) Start the web app in your browser with  
-  `localhost:8080`
-6) 
+  `localhost:8080`    
+  ![](./images/readme-homepagestartup.png)
+6) Toggle between light and dark mode with the moon/sun    
+  *Page will remember your settings on refresh!*   
+  ![](./images/readme-darkmodetoggle.png)   
+  ![](./images/readme-darkmodestartup.png)    
+7) Page will update based on screen width < 1024 px -> mobile view    
+  ![](./images/readme-mobileview.png)
+8) Click 'Write a new Tweet' to add a new tweet   
+  *New Tweet form will slide down*      
+  ![](./images/readme-newtweet.png)   
+  *As you type your tweet, counter will update and warn you when you are getting close to max length...*    
+  ![](./images/readme-submitwarning.png)    
+  *...and once you've exceeded max characters*   
+  ![](./images/readme-submittoolong.png)    
+  *Submit tweet will shake to remind you to submit the tweet you've typed*    
+  ![](./images/readme-submittweet.png)    
+  *Click on Ghost to generate random tweet*
+  ![](./images/readme-ghost.png)
+9) If the tweet is too long or no tweet entered - data validation will prevent submission of the tweet.
+  ![](./images/readme-toolong.png)
+  ![](./images/readme-notweet.png)
+10) Click the 'flag' of a tweet to blur the tweet
+  ![](./images/readme-flag.png)
+11) Click the 'heart' of a tweet to add to favourite tweets
+  ![](./images/readme-like.png)
+  *Favs badge will update with number of liked tweets*
+  *When one or more tweets are liked, favs badge will turn green*
+  ![](./images/readme-likebadge.png)
+12) Click the 'retweet' to copy the tweet to the tweet input form
+  ![](./images/readme-retweet.png)
+13) If more than 10 tweets available, scroll down to load more tweets
+  *Badge will show remaining tweets available*
+  ![](./images/readme-moretweets.png)
+14) Use green up arrow to scroll back to top
+  *Arrow will appear and disappear automatically based on page scroll position*
+  ![](./images/readme-backtotop.png)
+15) Click on the favourite tweets to get a subset of liked only tweets
+  ![](./images/readme-likedtweets.png)
+  *If no tweets are liked, error message will appear*
+  ![](./images/readme-nofavs.png)
 
-![](./images/2022-09-12%2015-29-54.mov)
+Checkout our demo video [here!](./images/2022-09-12%2015-38-25.mov) 
 
 [( back to top 🔺) ](#about)
 
