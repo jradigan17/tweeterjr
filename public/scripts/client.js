@@ -1,4 +1,23 @@
 //----------------------------------------------------------
+// TO DO
+// api
+// Tweets Get Error Checking
+// read me file
+//----------------------------------------------------------
+
+//----------------------------------------------------------
+// EJ Items to Discuss
+// Pagnation
+// loadtweets - .done .always .fail
+// unread tweets count
+//----------------------------------------------------------
+
+//----------------------------------------------------------
+// https://codepen.io/nelledejones/pen/gOOPWrK
+// start with 'npm run local'
+//----------------------------------------------------------
+
+//----------------------------------------------------------
 /*
  * Client-side JS logic goes here
  * jQuery is already loaded
@@ -191,6 +210,7 @@ const loadfavtweets = () => {
 
   if (!heartstatus) {
     $('.tweets-list').empty();
+    $('.more-tweets').hide();
     $('.tweets-list').prepend($(`<label class="no-favs">Whoops - No Tweets Liked</label>`));
     return;
   } else {
@@ -206,6 +226,7 @@ const loadfavtweets = () => {
       if (favtweets.length > 0) {
         renderTweets(favtweets);
       } else {
+        $('.more-tweets').hide();
         $('.tweets-list').prepend($(`<label class="no-favs">Whoops - No Tweets Liked</label>`))
       }
     });
@@ -427,10 +448,10 @@ if (localStorage.getItem('fav') === 'true') {
       $('.fa-gratipay').attr('data-badge', value.length);
       // console.log(localStorage);
       event.stopPropagation();
-      if (!heartstatus) {
+      if (!value) {
         $('.fa-gratipay').removeClass('heart');
         localStorage.setItem('fav', false);
-      } else if (heartstatus.length === 0) {
+      } else if (value.length === 0) {
         $('.fa-gratipay').removeClass('heart');
         localStorage.setItem('fav', false);
       }

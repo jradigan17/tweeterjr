@@ -8,7 +8,7 @@ $(document).ready(function() {
 // Input into Text Area - Counter
   $("#tweet-text").on('input focus', function() {
     // console.log(this.value.length);
-    $(this).siblings('div').children('div').children('.counter').val(140 - this.value.length);
+    $(this).siblings('div').children('div').children('div').children('.counter').val(140 - this.value.length);
     // Tweet too long - CSS Styling
     if (140 - this.value.length >= 0 && 140 - this.value.length < 10) {
       $('.counter').addClass('warning');
@@ -17,12 +17,12 @@ $(document).ready(function() {
         $(this).css("color", "var(--green)");
       });
     } else if (140 - this.value.length < 0) {
-      $(this).siblings('div').children('div').children('.counter').css("color", "var(--red)");
+      $(this).siblings('div').children('div').children('div').children('.counter').css("color", "var(--red)");
     } else {
-      $(this).siblings('div').children('div').children('.counter').css("color", "var(--green)");
+      $(this).siblings('div').children('div').children('div').children('.counter').css("color", "var(--green)");
     }
     // Hide any data validation - Tweet length good
-    if (this.value.length >= 0 && this.value.length < 140) {
+    if (this.value.length > 0 && this.value.length <= 140) {
       $('.invalid').hide();
     }
   });

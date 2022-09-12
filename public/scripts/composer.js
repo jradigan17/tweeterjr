@@ -1,4 +1,45 @@
 //----------------------------------------------------------
+// Dark Mode
+const darkmode = () => {
+  $('body').addClass('darkbody');
+  $('nav').addClass('darknav');
+  $('.userinfo').attr('id', 'darkheader');
+  $('.tweeticon').attr('id', 'darkicon');
+  $('article').addClass('darkarticle');
+  $('#tweet-text').css('background-image', 'none')
+  $('.darkmode').addClass('fa-sun');
+  $('.darkmode').removeClass('fa-moon');
+  $('.fa-gratipay').removeClass('badge');
+  $('.fa-gratipay').addClass('badgedark');
+  $('.more-tweets').removeClass('badge');
+  $('.more-tweets').addClass('badgedark');
+  // console.log("moon clicked:", localStorage.getItem('darkmode'));
+  return;
+};
+//----------------------------------------------------------
+
+//----------------------------------------------------------
+// Light Mode
+const lightmode = () => {
+  $('body').removeClass('darkbody');
+  $('nav').removeClass('darknav');
+  $('.userinfo').removeAttr('id');
+  $('.tweeticon').removeAttr('id');
+  $('article').removeClass('darkarticle');
+  $('#tweet-text').css('background-image', 'url("https://www.transparenttextures.com/patterns/cardboard.png"')
+  $('.darkmode').removeClass('fa-sun');
+  $('.darkmode').addClass('fa-moon');
+  localStorage.setItem('darkmode', false);
+  $('.fa-gratipay').removeClass('badgedark');
+  $('.fa-gratipay').addClass('badge');
+  $('.more-tweets').removeClass('badgedark');
+  $('.more-tweets').addClass('badge');
+  // console.log("sun clicked:", localStorage.getItem('darkmode'));
+  return;
+};
+//----------------------------------------------------------
+
+//----------------------------------------------------------
 // Actions on document load
 $(document).ready(function() {
   // --- our code goes here ---
@@ -22,18 +63,10 @@ $(document).ready(function() {
   // console.log('load event occured');
   // console.log("darkmode status on load", localStorage.getItem('darkmode'));
   if (localStorage.getItem('darkmode') === 'true') {
-    $('body').addClass('darkbody');
-    $('nav').addClass('darknav');
-    $('.userinfo').attr('id', 'darkheader');
-    $('.tweeticon').attr('id', 'darkicon');
-    $('article').addClass('darkarticle');
-    $('#tweet-text').css('background-image', 'none')
-    $('.darkmode').addClass('fa-sun');
-    $('.darkmode').removeClass('fa-moon');
-    $('.fa-gratipay').removeClass('badge');
-    $('.fa-gratipay').addClass('badgedark');
-    $('.more-tweets').removeClass('badge');
-    $('.more-tweets').addClass('badgedark');
+    darkmode();
+    $('body').css('visibility', 'visible');
+  } else {
+    $('body').css('visibility', 'visible');
   }
 //----------------------------------------------------------
 
@@ -101,38 +134,13 @@ $(document).ready(function() {
     // console.log('darkmode button clicked');
     // Turn on Dark Mode
     if ($(this).hasClass('fa-moon')) {
-      $('body').addClass('darkbody');
-      $('nav').addClass('darknav');
-      $('.userinfo').attr('id', 'darkheader');
-      $('.tweeticon').attr('id', 'darkicon');
-      $('article').addClass('darkarticle');
-      $('#tweet-text').css('background-image', 'none')
-      $(this).addClass('fa-sun');
-      $(this).removeClass('fa-moon');
+      darkmode();
       localStorage.setItem('darkmode', true);
-      $('.fa-gratipay').removeClass('badge');
-      $('.fa-gratipay').addClass('badgedark');
-      $('.more-tweets').removeClass('badge');
-      $('.more-tweets').addClass('badgedark');
-      // console.log("moon clicked:", localStorage.getItem('darkmode'));
       return;
     } else {
       // Turn off Dark Mode
       // console.log('Sun Clicked');
-      $('body').removeClass('darkbody');
-      $('nav').removeClass('darknav');
-      $('.userinfo').removeAttr('id');
-      $('.tweeticon').removeAttr('id');
-      $('article').removeClass('darkarticle');
-      $('#tweet-text').css('background-image', 'url("https://www.transparenttextures.com/patterns/cardboard.png"')
-      $(this).removeClass('fa-sun');
-      $(this).addClass('fa-moon');
-      localStorage.setItem('darkmode', false);
-      $('.fa-gratipay').removeClass('badgedark');
-      $('.fa-gratipay').addClass('badge');
-      $('.more-tweets').removeClass('badgedark');
-      $('.more-tweets').addClass('badge');
-      // console.log("sun clicked:", localStorage.getItem('darkmode'));
+      lightmode();
       return;
     }
   });
