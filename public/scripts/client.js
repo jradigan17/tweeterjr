@@ -189,21 +189,27 @@ const loadfavtweets = () => {
   const favtweets = [];
   const heartstatus = JSON.parse(localStorage.getItem('heartstatus'));
 
-  $.get('/tweets', function(data, status) {
-    for (let i = 0; i < heartstatus.length; i++) {
-      for (let j = 0; j < data.length; j++) {
-        if (Object.keys(heartstatus[i])[0] === data[j].user.handle) {
-          favtweets.push(data[j]);
+  if (!heartstatus) {
+    $('.tweets-list').empty();
+    $('.tweets-list').prepend($(`<label class="no-favs">Whoops - No Tweets Liked</label>`));
+    return;
+  } else {
+    $.get('/tweets', function(data, status) {
+      for (let i = 0; i < heartstatus.length; i++) {
+        for (let j = 0; j < data.length; j++) {
+          if (Object.keys(heartstatus[i])[0] === data[j].user.handle) {
+            favtweets.push(data[j]);
+          }
         }
       }
-    }
-    $('.tweets-list').empty();
-    if (favtweets.length > 0) {
-      renderTweets(favtweets);
-    } else {
-      $('.tweets-list').prepend($(`<label class="no-favs">Whoops - No Tweets Liked</label>`))
-    }
-  });
+      $('.tweets-list').empty();
+      if (favtweets.length > 0) {
+        renderTweets(favtweets);
+      } else {
+        $('.tweets-list').prepend($(`<label class="no-favs">Whoops - No Tweets Liked</label>`))
+      }
+    });
+  }
 };
 //----------------------------------------------------------
 

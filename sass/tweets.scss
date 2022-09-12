@@ -82,7 +82,7 @@ footer {
 }
 
 .userhandler {
-  color: var(--grey);
+  @extend #darkicon;
   font-family: $sansprotext;
   font-weight: 600;
 }

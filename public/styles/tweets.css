@@ -77,12 +77,11 @@ footer {
   color: var(--black);
 }
 
-#darkicon {
+#darkicon, .userhandler {
   color: var(--grey);
 }
 
 .userhandler {
-  color: var(--grey);
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 600;
 }
