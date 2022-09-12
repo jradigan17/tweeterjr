@@ -3,7 +3,6 @@
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
  */
-
 :root {
   --green: #1bdf76;
   --purple: #7b51ec;
@@ -32,17 +31,16 @@ html {
 /*
  * Global layout stuff
  */
-
 body {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   color: var(--white);
   background-color: var(--black);
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-weight: 600;
   font-size: 24px;
-  align-items: center;
   background-image: url("https://www.transparenttextures.com/patterns/cardboard.png");
 }
 
@@ -53,19 +51,18 @@ body {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
-
 main {
   display: flex;
-  width: 90%;
   flex-direction: column;
   align-items: center;
+  width: 90%;
 }
 
 .wrapper {
-  display:flex;
-  width: 100%;
+  display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .back-top {
@@ -74,13 +71,12 @@ main {
   justify-self: flex-end;
   font-size: medium;
   padding-bottom: 1em;
-  padding-right: 0.5em ;
+  padding-right: 0.5em;
   bottom: 0;
   right: 0;
   position: fixed;
-  color: var(--green)
+  color: var(--green);
 }
-
 .back-top:hover {
   color: var(--purple);
   animation: gelatine 0.5s infinite;
@@ -104,7 +100,7 @@ main {
 }
 
 a {
-  color: var(--lightgreen)
+  color: var(--lightgreen);
 }
 
 .no-favs {
@@ -112,7 +108,7 @@ a {
   justify-content: center;
   color: var(--green);
   padding-bottom: 1em;
-  font-family: 'Bungee', cursive;
+  font-family: "Bungee", cursive;
   font-weight: 400;
   font-size: 20px;
 }
@@ -123,7 +119,7 @@ a {
   cursor: pointer;
   font-size: medium;
   padding-top: 1em;
-  padding-right: 0.5em ;
+  padding-right: 0.5em;
 }
 
 .darkspan {
@@ -136,8 +132,8 @@ a {
   display: inline;
   align-content: center;
   align-self: center;
+  border-radius: 8px;
 }
-
 
 .badge {
   position: relative;
@@ -145,9 +141,9 @@ a {
 
 .badge[data-badge]:after {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   content: attr(data-badge);
   position: absolute;
   top: -5px;
@@ -164,7 +160,7 @@ a {
   border-color: black;
   box-shadow: 0 0 1px #333;
   font-size: 15px;
-  font-family: 'Bungee';
+  font-family: "Bungee", cursive;
   font-weight: 600;
 }
 
@@ -174,9 +170,9 @@ a {
 
 .badgedark[data-badge]:after {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   content: attr(data-badge);
   position: absolute;
   top: -5px;
@@ -193,51 +189,52 @@ a {
   border-color: black;
   box-shadow: 0 0 1px #333;
   font-size: 15px;
-  font-family: 'Bungee';
+  font-family: "Bungee", cursive;
   font-weight: 600;
 }
 
 @keyframes gelatine {
-  from, to { transform: scale(1, 1); }
-  25% { transform: scale(0.9, 1.1); }
-  50% { transform: scale(1.1, 0.9); }
-  75% { transform: scale(0.95, 1.05); }
+  from, to {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
 }
-
-@media only screen and (min-width:1024px) {
+@media only screen and (min-width: 1024px) {
   main {
     flex-grow: 1;
     float: right;
     margin-right: 60px;
     max-width: 1200px;
   }
-
   .wrapper {
     flex-direction: row;
     gap: 30px;
     margin-top: 100px;
     align-items: flex-start;
   }
-
   .back-top {
     font-size: 1em;
     padding-bottom: 1em;
     padding-right: 1em;
   }
-
   .darkspan {
     display: flex;
     flex-direction: column;
     align-self: flex-end;
-    position:fixed;
+    position: fixed;
     top: 100px;
     right: 0;
   }
-
   .darkmode {
     padding-right: 1em;
     font-size: 1em;
   }
 }
-
-

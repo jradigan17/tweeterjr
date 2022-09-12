@@ -1,25 +1,25 @@
+@import './_variables';
+
 button {
   background-color: var(--green);
-  font-family: 'Bungee', cursive;
+  font-family: $bungeetext;
   font-weight: 400;
   font-size: 20px;
-}
-
-button:hover {
-  background-color: var(--purple);
-  background-image: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
-  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-  cursor: pointer;
+  &:hover {
+    background-color: var(--purple);
+    background-image: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    cursor: pointer;
+  }
 }
 
 section {
-  display: flex;
+  @include rowsetup('');
   width: 100%;
-  flex-direction: row;
-  font-family: 'Bungee', cursive;
+  font-family: $bungeetext;
   font-weight: 400;
   color: var(--green);
   padding-bottom: 1em;
@@ -36,14 +36,13 @@ section {
   border-color: var(--green);
   font-size: 18px;
   resize: none;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: $sansprotext;
   font-weight: 600;
   font-size: 18px;
 }
 
 .bottom-section {
-  display: flex;
-  flex-direction: row;
+  @include rowsetup('');
   justify-content: space-between;
 }
 
@@ -57,7 +56,7 @@ section {
 
 .invalid {
   display: flex;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: $sansprotext;
   font-weight: 600;
   font-size: 18px;
   color: var(--red);
@@ -65,9 +64,7 @@ section {
 }
 
 .left-side {
-  display:flex;
-  flex-direction: row;
-  align-items: center;
+  @include rowsetup(center);
   gap: 5px;
 }
 

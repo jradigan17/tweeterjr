@@ -1,24 +1,27 @@
+@import './_variables';
+
 .userinfo {
-  display: flex;
+  @include columnsetup();
   height: auto;
   width: 100%;
   padding-top: 100px;
   background-color: var(--purple);
-  flex-direction: column;
-  align-items: center;
   border-style: solid;
+  color: var(--grey);
   border-color: var(--black);
   background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
   position: static;
 }
 
+#darkheader {
+  background-color: var(--darkgrey);
+  color: var(--black);
+}
+
 .name {
-  display: flex;
-  flex-direction: column;
-  color: var(--grey);
-  font-family: 'Bungee', cursive;
+  @include columnsetup();
+  font-family: $bungeetext;
   font-weight: 400;
-  align-items: center;
   font-size: 30px;
 }
 
@@ -32,6 +35,10 @@
 
 .heart {
   color: var(--lightgreen)
+}
+
+.favs {
+  color: var(--red);
 }
 
 @media only screen and (min-width:1024px) {

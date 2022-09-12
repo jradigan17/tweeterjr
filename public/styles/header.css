@@ -1,11 +1,11 @@
 .userinfo {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   height: auto;
   width: 100%;
   padding-top: 100px;
   background-color: var(--purple);
-  flex-direction: column;
-  align-items: center;
   border-style: solid;
   color: var(--grey);
   border-color: var(--black);
@@ -21,9 +21,9 @@
 .name {
   display: flex;
   flex-direction: column;
-  font-family: 'Bungee', cursive;
-  font-weight: 400;
   align-items: center;
+  font-family: "Bungee", cursive;
+  font-weight: 400;
   font-size: 30px;
 }
 
@@ -36,14 +36,14 @@
 }
 
 .heart {
-  color: var(--lightgreen)
+  color: var(--lightgreen);
 }
 
 .favs {
   color: var(--red);
 }
 
-@media only screen and (min-width:1024px) {
+@media only screen and (min-width: 1024px) {
   .userinfo {
     flex: 0 0 400px;
     padding-top: 20px;

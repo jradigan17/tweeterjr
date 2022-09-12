@@ -20,23 +20,22 @@ nav {
 }
 
 .tweeter {
-  display:flex;
+  display: flex;
   flex-direction: row;
-  font-family: 'Bungee', cursive;
+  align-items: center;
+  font-family: "Bungee", cursive;
   font-weight: 400;
   font-size: 30px;
   justify-content: center;
-  align-items: center;
 }
 
 .new-tweeter {
   flex-direction: column;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-weight: 600;
   text-align: center;
   font-size: 18px;
 }
-
 .new-tweeter:hover {
   cursor: pointer;
   color: var(--black);
@@ -45,16 +44,29 @@ nav {
 }
 
 @keyframes bounce {
-    10% { transform:translateY(0%); }
-    20% { transform:translateY(-15%); }
-    30% { transform:translateY(0%); }
-    35% { transform:translateY(-7%); }
-    37% { transform:translateY(0%); }
-    39% { transform:translateY(-3%); }
-    40% { transform:translateY(0); }
+  10% {
+    transform: translateY(0%);
+  }
+  20% {
+    transform: translateY(-15%);
+  }
+  30% {
+    transform: translateY(0%);
+  }
+  35% {
+    transform: translateY(-7%);
+  }
+  37% {
+    transform: translateY(0%);
+  }
+  39% {
+    transform: translateY(-3%);
+  }
+  40% {
+    transform: translateY(0);
+  }
 }
-
-@media only screen and (min-width:1024px) {
+@media only screen and (min-width: 1024px) {
   nav {
     border-style: solid;
   }

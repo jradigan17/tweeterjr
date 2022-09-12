@@ -1,0 +1,14 @@
+$bungeetext: 'Bungee', cursive;
+$sansprotext: 'Source Sans Pro', sans-serif;
+
+@mixin columnsetup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin rowsetup($align) {
+  display: flex;
+  flex-direction: row;
+  align-items: $align;
+}

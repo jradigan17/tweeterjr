@@ -1,3 +1,5 @@
+@import './_variables';
+
 .tweets-list {
   display: flex;
   width: 100%;
@@ -15,27 +17,31 @@ article {
   background-color: var(--green);
   color: var(--black);
   border-radius: 20px;
+  &:hover {
+    filter: drop-shadow(0px 0px 20px var(--lightpurple));
+  }
 }
 
-article:hover {
-  filter: drop-shadow(0px 0px 20px var(--lightpurple));
+.darkarticle {
+  border-color: var(--green);
+  background-color: var(--black);
+  color: var(--beige);
 }
 
 header {
   display: flex;
   justify-content: space-between;
   padding-bottom: 0.5em;
-  font-family: 'Bungee', cursive;
+  font-family: $bungeetext;
   font-weight: 400;
   font-size: 18px;
   align-items: flex-end;
 }
 
 footer {
-  display: flex;
+  @include rowsetup('');
   justify-content: space-between;
   font-size: small;
-  flex-direction: row;
   padding-top: 0.5em;
   border-top: 3px;
   border-style: solid none none none;
@@ -44,11 +50,10 @@ footer {
 .icon {
   display: flex;
   padding-left: 1em;
-}
-
-.icon:hover {
-  color: var(--red);
-  cursor: pointer;
+  &:hover {
+    color: var(--red);
+    cursor: pointer;
+  }
 }
 
 .redflag {
@@ -72,8 +77,12 @@ footer {
   color: var(--black)
 }
 
+#darkicon {
+  color: var(--grey)
+}
+
 .userhandler {
   color: var(--grey);
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: $sansprotext;
   font-weight: 600;
 }
