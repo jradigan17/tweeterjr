@@ -4,8 +4,8 @@ $(document).ready(function() {
   // --- our code goes here ---
   console.log("document ready - take two");
 
-//----------------------------------------------------------
-// Input into Text Area - Counter
+  //----------------------------------------------------------
+  // Input into Text Area - Counter
   $("#tweet-text").on('input focus', function() {
     // console.log(this.value.length);
     $(this).siblings('div').children('div').children('div').children('.counter').val(140 - this.value.length);
@@ -26,7 +26,7 @@ $(document).ready(function() {
       $('.invalid').hide();
     }
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
 });
 //----------------------------------------------------------

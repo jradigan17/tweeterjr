@@ -6,7 +6,7 @@ const darkmode = () => {
   $('.userinfo').attr('id', 'darkheader');
   $('.tweeticon').attr('id', 'darkicon');
   $('article').addClass('darkarticle');
-  $('#tweet-text').css('background-image', 'none')
+  $('#tweet-text').css('background-image', 'none');
   $('.darkmode').addClass('fa-sun');
   $('.darkmode').removeClass('fa-moon');
   $('.fa-gratipay').removeClass('badge');
@@ -26,7 +26,7 @@ const lightmode = () => {
   $('.userinfo').removeAttr('id');
   $('.tweeticon').removeAttr('id');
   $('article').removeClass('darkarticle');
-  $('#tweet-text').css('background-image', 'url("https://www.transparenttextures.com/patterns/cardboard.png"')
+  $('#tweet-text').css('background-image', 'url("https://www.transparenttextures.com/patterns/cardboard.png"');
   $('.darkmode').removeClass('fa-sun');
   $('.darkmode').addClass('fa-moon');
   localStorage.setItem('darkmode', false);
@@ -51,15 +51,15 @@ $(document).ready(function() {
   // Determine Offset of Main
   const height = $('main').offset().top - 100;
 
-//----------------------------------------------------------
-// Action on Resize
+  //----------------------------------------------------------
+  // Action on Resize
   $(window).on('resize', function() {
     location.reload();
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Document Load - Check Darkmode
+  //----------------------------------------------------------
+  // Document Load - Check Darkmode
   // console.log('load event occured');
   // console.log("darkmode status on load", localStorage.getItem('darkmode'));
   if (localStorage.getItem('darkmode') === 'true') {
@@ -68,11 +68,11 @@ $(document).ready(function() {
   } else {
     $('body').css('visibility', 'visible');
   }
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
 
-//----------------------------------------------------------
-// Action on Scroll
+  //----------------------------------------------------------
+  // Action on Scroll
   $(window).on("scroll", function() {
     // Hide New Tweet Section
     if ($(window).scrollTop() > $('main').offset().top) {
@@ -98,10 +98,10 @@ $(document).ready(function() {
     }
 
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// New Tweet - Nav Bar
+  //----------------------------------------------------------
+  // New Tweet - Nav Bar
   $('.new-tweeter').on('click', function(event) {
     event.preventDefault();
     // Action if Past Main
@@ -126,10 +126,10 @@ $(document).ready(function() {
       return;
     }
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Dark Mode/Light Mode
+  //----------------------------------------------------------
+  // Dark Mode/Light Mode
   $('.darkmode').on('click', function(event) {
     // console.log('darkmode button clicked');
     // Turn on Dark Mode
@@ -144,7 +144,7 @@ $(document).ready(function() {
       return;
     }
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
 });
 //----------------------------------------------------------

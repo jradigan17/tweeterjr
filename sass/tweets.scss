@@ -86,3 +86,15 @@ footer {
   font-family: $sansprotext;
   font-weight: 600;
 }
+
+.error-tweets {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  color: var(--green);
+  padding-bottom: 1em;
+  font-family: $bungeetext;
+  font-weight: 400;
+  font-size: 20px;
+}

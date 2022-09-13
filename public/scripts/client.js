@@ -1,15 +1,6 @@
 //----------------------------------------------------------
 // TO DO
 // api
-// Tweets Get Error Checking
-// read me file
-//----------------------------------------------------------
-
-//----------------------------------------------------------
-// EJ Items to Discuss
-// Pagnation
-// loadtweets - .done .always .fail
-// unread tweets count
 //----------------------------------------------------------
 
 //----------------------------------------------------------
@@ -60,7 +51,7 @@ const createTweetElement = (object) => {
     // console.log('darkmode accessed')
     darktweet = 'class="darkarticle"';
     darkicon = 'id="darkicon"';
-  };
+  }
 
   return $(`<article ${darktweet}>
   <header>
@@ -107,7 +98,8 @@ const escapetext = function(str) {
 const renderTweets = (tweets) => {
   if (tweets.length > 10) {
     $('.more-tweets').show();
-    $('.more-tweets').attr('data-badge', tweets.length-10);
+    $('.error-tweets').hide();
+    $('.more-tweets').attr('data-badge', tweets.length - 10);
     localStorage.setItem('show','10');
     // console.log(localStorage.getItem('show'))
     let firsttweets = [];
@@ -119,6 +111,7 @@ const renderTweets = (tweets) => {
     });
   } else {
     $('.more-tweets').hide();
+    $('.error-tweets').hide();
     tweets.forEach(element => {
       $('.tweets-list').prepend(createTweetElement(element));
     });
@@ -135,56 +128,76 @@ const loadMoreTweets = () => {
     const favtweets = [];
     const heartstatus = JSON.parse(localStorage.getItem('heartstatus'));
   
-    $.get('/tweets', function(data, status) {
-      for (let i = 0; i < heartstatus.length; i++) {
-        for (let j = 0; j < data.length; j++) {
-          if (Object.keys(heartstatus[i])[0] === data[j].user.handle) {
-            favtweets.push(data[j]);
+    $.get({url: '/tweets',
+      success: function(data, status) {
+        $('.error-tweets').hide();
+        for (let i = 0; i < heartstatus.length; i++) {
+          for (let j = 0; j < data.length; j++) {
+            if (Object.keys(heartstatus[i])[0] === data[j].user.handle) {
+              favtweets.push(data[j]);
+            }
           }
         }
+        $('.tweets-list').empty();
+        if (favtweets.length > 0) {
+          if (favtweets.length > itemcount + 10) {
+            $('.more-tweets').show();
+            $('.more-tweets').attr('data-badge', favtweets.length - count);
+            localStorage.setItem('show', count);
+            let firsttweets = [];
+            for (let i = favtweets.length - count; i < favtweets.length; i++) {
+              firsttweets.push(favtweets[i]);
+            }
+            firsttweets.forEach(element => {
+              $('.tweets-list').prepend(createTweetElement(element));
+            });
+          } else {
+            $('.more-tweets').hide();
+            favtweets.forEach(element => {
+              $('.tweets-list').prepend(createTweetElement(element));
+            });
+          }
+        } else {
+          $('.tweets-list').prepend($(`<label class="no-favs">Whoops - No Tweets Liked</label>`));
+        }
+      },
+      error: function(xhr, status, error) {
+        let errorMessage = xhr.status + ': ' + xhr.statusText;
+        $('.more-tweets').hide();
+        $('.error-tweets').show();
+        $('.tweets-list').empty();
+        console.log(errorMessage);
       }
-      $('.tweets-list').empty();
-      if (favtweets.length > 0) {
-        if (favtweets.length > itemcount + 10) {
+    });
+  } else {
+    $.get({url: '/tweets',
+      success: function(data, status) {
+        $('.error-tweets').hide();
+        $('.tweets-list').empty();
+        if (data.length > itemcount + 10) {
           $('.more-tweets').show();
-          $('.more-tweets').attr('data-badge', favtweets.length - count);
+          $('.more-tweets').attr('data-badge', data.length - count);
           localStorage.setItem('show', count);
           let firsttweets = [];
-          for (let i = favtweets.length - count; i < favtweets.length; i++) {
-            firsttweets.push(favtweets[i]);
+          for (let i = data.length - count; i < data.length; i++) {
+            firsttweets.push(data[i]);
           }
           firsttweets.forEach(element => {
             $('.tweets-list').prepend(createTweetElement(element));
           });
         } else {
           $('.more-tweets').hide();
-          favtweets.forEach(element => {
+          data.forEach(element => {
             $('.tweets-list').prepend(createTweetElement(element));
           });
         }
-      } else {
-        $('.tweets-list').prepend($(`<label class="no-favs">Whoops - No Tweets Liked</label>`))
-      }
-    });
-  } else {
-    $.get('/tweets', function(data, status) {
-      $('.tweets-list').empty();
-      if (data.length > itemcount + 10) {
-        $('.more-tweets').show();
-        $('.more-tweets').attr('data-badge', data.length - count);
-        localStorage.setItem('show', count);
-        let firsttweets = [];
-        for (let i = data.length - count; i < data.length; i++) {
-          firsttweets.push(data[i]);
-        }
-        firsttweets.forEach(element => {
-          $('.tweets-list').prepend(createTweetElement(element));
-        });
-      } else {
+      },
+      error: function(xhr, status, error) {
+        let errorMessage = xhr.status + ': ' + xhr.statusText;
         $('.more-tweets').hide();
-        data.forEach(element => {
-          $('.tweets-list').prepend(createTweetElement(element));
-        });
+        $('.error-tweets').show();
+        $('.tweets-list').empty();
+        console.log(errorMessage);
       }
     });
   }
@@ -195,9 +208,19 @@ const loadMoreTweets = () => {
 // Load Tweets - Load Tweets from Existing Data Base
 const loadtweets = () => {
   $('.fa-gratipay').removeClass('favs');
-  $.get('/tweets', function(data, status) {
-    $('.tweets-list').empty();
-    renderTweets(data);
+  $.get({url: '/tweets',
+    success: function(data, status) {
+      $('.error-tweets').hide();
+      $('.tweets-list').empty();
+      renderTweets(data);
+    },
+    error: function(xhr, status, error) {
+      let errorMessage = xhr.status + ': ' + xhr.statusText;
+      $('.more-tweets').hide();
+      $('.error-tweets').show();
+      $('.tweets-list').empty();
+      console.log(errorMessage);
+    }
   });
 };
 //----------------------------------------------------------
@@ -210,24 +233,35 @@ const loadfavtweets = () => {
 
   if (!heartstatus) {
     $('.tweets-list').empty();
+    $('.error-tweets').hide();
     $('.more-tweets').hide();
     $('.tweets-list').prepend($(`<label class="no-favs">Whoops - No Tweets Liked</label>`));
     return;
   } else {
-    $.get('/tweets', function(data, status) {
-      for (let i = 0; i < heartstatus.length; i++) {
-        for (let j = 0; j < data.length; j++) {
-          if (Object.keys(heartstatus[i])[0] === data[j].user.handle) {
-            favtweets.push(data[j]);
+    $.get({url: '/tweets',
+      success: function(data, status) {
+        $('.error-tweets').hide();
+        for (let i = 0; i < heartstatus.length; i++) {
+          for (let j = 0; j < data.length; j++) {
+            if (Object.keys(heartstatus[i])[0] === data[j].user.handle) {
+              favtweets.push(data[j]);
+            }
           }
         }
-      }
-      $('.tweets-list').empty();
-      if (favtweets.length > 0) {
-        renderTweets(favtweets);
-      } else {
+        $('.tweets-list').empty();
+        if (favtweets.length > 0) {
+          renderTweets(favtweets);
+        } else {
+          $('.more-tweets').hide();
+          $('.tweets-list').prepend($(`<label class="no-favs">Whoops - No Tweets Liked</label>`));
+        }
+      },
+      error: function(xhr, status, error) {
+        let errorMessage = xhr.status + ': ' + xhr.statusText;
         $('.more-tweets').hide();
-        $('.tweets-list').prepend($(`<label class="no-favs">Whoops - No Tweets Liked</label>`))
+        $('.error-tweets').show();
+        $('.tweets-list').empty();
+        console.log(errorMessage);
       }
     });
   }
@@ -245,7 +279,7 @@ const flagstatus = JSON.parse(localStorage.getItem('flagstatus'));
 const removeStatus = (items, handle) => {
   items = items.filter(item => Object.keys(item)[0] !== Object.keys(handle)[0]);
   return items;
-}
+};
 //----------------------------------------------------------
 
 //----------------------------------------------------------
@@ -273,32 +307,33 @@ $(document).ready(function() {
   // console.log('onload flagstatus:', localStorage.getItem('flagstatus'));
   // localStorage.clear()
 
-//----------------------------------------------------------
-// Hide Error Validation & New Tweet & Back to Top Button
+  //----------------------------------------------------------
+  // Hide Error Validation & New Tweet & Back to Top Button
   $('.invalid').hide();
   $('.new-tweet').hide();
   $('.back-top').hide();
   $('.more-tweets').hide();
-  localStorage.removeItem('show')
+  $('.error-tweets').hide();
+  localStorage.removeItem('show');
   // console.log(localStorage.getItem('show'))
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Render & Render Tweets - DNU as Data Base Removed
+  //----------------------------------------------------------
+  // Render & Render Tweets - DNU as Data Base Removed
   // renderTweets(data);
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Render Liked Tweets
+  //----------------------------------------------------------
+  // Render Liked Tweets
   if (!JSON.parse(localStorage.getItem('heartstatus'))) {
     $('.fa-gratipay').attr('data-badge', 0);
   } else {
     $('.fa-gratipay').attr('data-badge', JSON.parse(localStorage.getItem('heartstatus')).length);
-  };
-//----------------------------------------------------------
+  }
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Submit New Tweet & Data Validation
+  //----------------------------------------------------------
+  // Submit New Tweet & Data Validation
   $('form').on('submit', function(event) {
   // Need to prevent form submission
     event.preventDefault();
@@ -308,44 +343,54 @@ $(document).ready(function() {
     // console.log($('#tweet-text').serialize());
     // $('.invalid').remove();
     $('.invalid').hide();
-  // Tweet too long
+    // Tweet too long
     if ($('.counter').val() < 0) {
       datavalidation(toolong);
       return;
-  // Tweet too short
+      // Tweet too short
     } else if ($('.counter').val() === "140") {
       datavalidation(tooshort);
       return;
-  // Good Tweet - Submit and Render
+      // Good Tweet - Submit and Render
     } else {
-      $.post('/tweets', $('#tweet-text').serialize(), function(data, status) {
-        $('#tweet-text').val("");
-        $('.counter').val(140);
-        loadtweets();
+      $.post({url: '/tweets', data: $('#tweet-text').serialize(),
+        success: function(data, status) {
+          $('.error-tweets').hide();
+          $('#tweet-text').val("");
+          $('.counter').val(140);
+          loadtweets();
+        },
+        error: function(xhr, status, error) {
+          let errorMessage = xhr.status + ': ' + xhr.statusText;
+          $('.more-tweets').hide();
+          $('.error-tweets').show();
+          $('.tweets-list').empty();
+          console.log(errorMessage);
+        }
       });
     }
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Load Initial Tweets
+  //----------------------------------------------------------
+  // Load Initial Tweets
   if (localStorage.getItem('favs') === 'true') {
     $('.fa-gratipay').addClass('favs');
     loadfavtweets();
   } else {
     loadtweets();
   }
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Load Favorite Tweets Status
-if (localStorage.getItem('fav') === 'true') {
-  $('.fa-gratipay').addClass('heart');
-}
-//----------------------------------------------------------
+  //----------------------------------------------------------
+  // Load Favorite Tweets Status
+  if (localStorage.getItem('fav') === 'true') {
+    $('.fa-gratipay').addClass('heart');
+  }
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// CSS Styling when Enter Text Area
+  //----------------------------------------------------------
+  // CSS Styling when Enter Text Area
   $('#tweet-text').on('focus', function() {
     $(this).css({"background-color": "var(--green)", "background-image": "none", "color": "var(--black)", "border-style": "none none solid none", "border-color": "var(--green)"});
   });
@@ -359,7 +404,7 @@ if (localStorage.getItem('fav') === 'true') {
     }
 
 
-  // CSS Styling - Shake For User to Submit Tweet
+    // CSS Styling - Shake For User to Submit Tweet
     if ($('.counter').val() < 140 && $('.counter').val() >= 0) {
       $('button').addClass('shake');
       $('button').on('animationend', function() {
@@ -367,31 +412,31 @@ if (localStorage.getItem('fav') === 'true') {
       });
     }
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// CSS Styling - Go Back to Top
+  //----------------------------------------------------------
+  // CSS Styling - Go Back to Top
   $('.back-top').on('click', function() {
     $("html, body").stop().animate({ scrollTop: 0}, "slow");
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Random Tweet Generator
+  //----------------------------------------------------------
+  // Random Tweet Generator
   $(".fa-ghost").on('click', function() {
     const index = Math.floor(Math.random() * (randomTweets.length));
     $('#tweet-text').val(randomTweets[index]);
     $('#tweet-text').focus();
     $('#tweet-text').css({"background-color": "var(--green)", "background-image": "none", "color": "var(--black)", "border-style": "none none solid none", "border-color": "var(--green)"});
     $('button').addClass('shake');
-      $('button').on('animationend', function() {
-        $(this).removeClass('shake');
-      });
+    $('button').on('animationend', function() {
+      $(this).removeClass('shake');
+    });
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Report Flag 
+  //----------------------------------------------------------
+  // Report Flag
   $(".tweets-list").on('click', ".fa-flag", function(event) {
     // console.log("Item Flagged")
     let flagstatus = JSON.parse(localStorage.getItem('flagstatus'));
@@ -403,7 +448,7 @@ if (localStorage.getItem('fav') === 'true') {
       $(this).parent().find('.fa-flag').removeClass('redflag');
       $(this).parent().find('.fa-flag').parent().parent().siblings('.content').removeClass('blurtext');
       let value = removeStatus(flagstatus, userflag);
-      localStorage.setItem('flagstatus', JSON.stringify(value))
+      localStorage.setItem('flagstatus', JSON.stringify(value));
       // console.log(localStorage);
       event.stopPropagation();
       return;
@@ -422,10 +467,10 @@ if (localStorage.getItem('fav') === 'true') {
       return;
     }
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Heart - Like 
+  //----------------------------------------------------------
+  // Heart - Like
   $(".tweets-list").on('click', ".fa-heart", function(event) {
     // console.log("Heart Liked")
     let heartstatus = JSON.parse(localStorage.getItem('heartstatus'));
@@ -436,7 +481,7 @@ if (localStorage.getItem('fav') === 'true') {
     } else if (heartstatus.length === 0) {
       $('.fa-gratipay').addClass('heart');
       localStorage.setItem('fav', true);
-    };
+    }
 
     const userhandle = $(this).parent().parent().siblings('header').children('.userhandler').text();
     const userheart = {[userhandle]: true};
@@ -444,7 +489,7 @@ if (localStorage.getItem('fav') === 'true') {
     if ($(this).parent().find('.fa-heart').hasClass('redflag')) {
       $(this).parent().find('.fa-heart').removeClass('redflag');
       let value = removeStatus(heartstatus, userheart);
-      localStorage.setItem('heartstatus', JSON.stringify(value))
+      localStorage.setItem('heartstatus', JSON.stringify(value));
       $('.fa-gratipay').attr('data-badge', value.length);
       // console.log(localStorage);
       event.stopPropagation();
@@ -466,7 +511,7 @@ if (localStorage.getItem('fav') === 'true') {
       if (!heartstatus) {
         heartstatus = [userheart];
       } else {
-      heartstatus.push(userheart);
+        heartstatus.push(userheart);
       }
       localStorage.setItem("heartstatus", JSON.stringify(heartstatus));
       $('.fa-gratipay').attr('data-badge', heartstatus.length);
@@ -474,34 +519,34 @@ if (localStorage.getItem('fav') === 'true') {
       return;
     }
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Show Favourites
+  //----------------------------------------------------------
+  // Show Favourites
   $(".fa-gratipay").on('click', function(event) {
-    if ($(this).hasClass('favs')){
-      $(this).removeClass('favs')
-      localStorage.setItem('favs', false)
+    if ($(this).hasClass('favs')) {
+      $(this).removeClass('favs');
+      localStorage.setItem('favs', false);
       loadtweets();
     } else {
       $(this).addClass('favs');
       // console.log("Show Fav Tweets");
-      localStorage.setItem('favs', true)
+      localStorage.setItem('favs', true);
       loadfavtweets();
     }
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Load More Tweets
+  //----------------------------------------------------------
+  // Load More Tweets
   $(".more-tweets").on('click', function(event) {
     loadMoreTweets();
     // console.log(localStorage.getItem('show'))
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Re-Tweet
+  //----------------------------------------------------------
+  // Re-Tweet
   $(".tweets-list").on('click', ".fa-retweet", function() {
     // console.log("Re-Tweet")
 
@@ -519,10 +564,10 @@ if (localStorage.getItem('fav') === 'true') {
     });
 
   });
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
-//----------------------------------------------------------
-// Mouse Over & Mouse Leave Examples
+  //----------------------------------------------------------
+  // Mouse Over & Mouse Leave Examples
   // $("article").on('mouseover', function() {
   //   $(this).css("box-shadow", "6px 6px 3px var(--lightpurple)");
   // })
@@ -548,7 +593,7 @@ if (localStorage.getItem('fav') === 'true') {
   //   $(this).css("background-color", "var(--green)");
   //   $(this).css("background-image", "none");
   // })
-//----------------------------------------------------------
+  //----------------------------------------------------------
 
 });
 //----------------------------------------------------------
